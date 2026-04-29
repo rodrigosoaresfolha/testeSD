@@ -1,0 +1,74 @@
+name: 🚨 Incidente
+description: Interrupção de um serviço que já estava funcionando normalmente
+title: "[INCIDENTE] "
+labels: ["incidente", "crítico"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ **Incidente crítico detectado!** Preencha os detalhes abaixo para que o time de TI tome ações imediatas.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Descrição do Incidente
+      description: Descreva o incidente de forma clara e concisa
+      placeholder: "Ex: Servidor de banco de dados fora do ar - sistema indisponível"
+    validations:
+      required: true
+
+  - type: input
+    id: service
+    attributes:
+      label: Serviço(s) Afetado(s)
+      description: Qual(is) serviço(s) está(ão) impactado(s)?
+      placeholder: "Ex: ERP, Email, VPN, Banco de Dados"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Nível de Severidade
+      options:
+        - "🔴 Crítico (Sistema fora)"
+        - "🟠 Alto (Funcionalidade principal impactada)"
+        - "🟡 Médio (Funcionalidade secundária impactada)"
+        - "🟢 Baixo (Problema menor)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impacto
+      description: Como isso afeta os usuários/negócio?
+      placeholder: "Ex: 150 usuários sem acesso, operações paradas"
+    validations:
+      required: true
+
+  - type: input
+    id: start_time
+    attributes:
+      label: Hora de Início
+      description: Quando o incidente começou?
+      placeholder: "Ex: 14:30 de hoje"
+    validations:
+      required: true
+
+  - type: textarea
+    id: initial_actions
+    attributes:
+      label: Ações Iniciais Tomadas
+      description: O que já foi feito para mitigar o problema?
+      placeholder: |
+        - Restart do serviço
+        - Notificação aos usuários
+        - etc.
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Observações Adicionais
+      description: Qualquer informação extra relevante
+      placeholder: "Informações adicionais..."
