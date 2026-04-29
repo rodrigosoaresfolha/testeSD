@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Desk TI - Portal de Atendimento</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+        body {
+            background-color: #f8fafc;
+            background-image: radial-gradient(#e2e8f0 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-slate-800">
+
+    <!-- Header -->
+    <header class="bg-indigo-700 text-white py-12 mb-10 shadow-lg">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl font-extrabold mb-2 tracking-tight">🚀 Service Desk TI</h1>
+            <p class="text-indigo-100 text-lg max-w-2xl mx-auto">Central de suporte e base de conhecimento. Como podemos ajudar você hoje?</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 pb-20">
+        
+        <!-- Secção de Abertura de Chamados -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold mb-8 flex items-center gap-2">
+                <i class="fas fa-ticket-alt text-indigo-600"></i> Abrir um Novo Chamado
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Bug -->
+                <a href="https://github.com/SEU_USUARIO/SEU_REPOSITORIO/issues/new?template=bug.yml" target="_blank" class="glass-card p-6 rounded-2xl group">
+                    <div class="w-12 h-12 bg-red-100 text-red-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-red-600 group-hover:text-white transition-colors">
+                        <i class="fas fa-bug text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Bug / Erro</h3>
+                    <p class="text-slate-500 text-sm">Reportar falhas técnicas ou comportamentos inesperados em sistemas.</p>
+                </a>
+
+                <!-- Incidente -->
+                <a href="https://github.com/SEU_USUARIO/SEU_REPOSITORIO/issues/new?template=incidente.yml" target="_blank" class="glass-card p-6 rounded-2xl group">
+                    <div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-orange-600 group-hover:text-white transition-colors">
+                        <i class="fas fa-exclamation-triangle text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Incidente</h3>
+                    <p class="text-slate-500 text-sm">Interrupção de um serviço que já estava funcionando normalmente.</p>
+                </a>
+
+                <!-- Acesso -->
+                <a href="https://github.com/SEU_USUARIO/SEU_REPOSITORIO/issues/new?template=acesso.yml" target="_blank" class="glass-card p-6 rounded-2xl group">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                        <i class="fas fa-user-lock text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Acessos e Permissões</h3>
+                    <p class="text-slate-500 text-sm">Solicitar criação de contas, reset de senhas ou novas permissões.</p>
+                </a>
+
+                <!-- Melhoria -->
+                <a href="https://github.com/SEU_USUARIO/SEU_REPOSITORIO/issues/new?template=melhoria.yml" target="_blank" class="glass-card p-6 rounded-2xl group">
+                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                        <i class="fas fa-rocket text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Melhoria / Sugestão</h3>
+                    <p class="text-slate-500 text-sm">Sugerir novas funcionalidades ou otimizações em processos de TI.</p>
+                </a>
+
+                <!-- Rotina -->
+                <a href="https://github.com/SEU_USUARIO/SEU_REPOSITORIO/issues/new?template=rotina.yml" target="_blank" class="glass-card p-6 rounded-2xl group">
+                    <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                        <i class="fas fa-calendar-check text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Rotina Técnica</h3>
+                    <p class="text-slate-500 text-sm">Tarefas recorrentes, backups e manutenções preventivas.</p>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Base de Conhecimento -->
+        <section>
+            <h2 class="text-2xl font-bold mb-8 flex items-center gap-2">
+                <i class="fas fa-book-open text-indigo-600"></i> Base de Conhecimento
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Categorias de Documentação -->
+                <div class="space-y-4">
+                    <h3 class="font-semibold text-slate-500 uppercase tracking-wider text-sm mb-4">Categorias</h3>
+                    
+                    <div class="flex items-center p-4 bg-white rounded-xl border border-slate-200 hover:border-indigo-300 transition-colors cursor-pointer">
+                        <i class="fas fa-folder text-yellow-500 mr-4"></i>
+                        <span class="flex-1 font-medium">Incidentes Frequentes</span>
+                        <span class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-500">docs/incidentes/</span>
+                    </div>
+
+                    <div class="flex items-center p-4 bg-white rounded-xl border border-slate-200 hover:border-indigo-300 transition-colors cursor-pointer">
+                        <i class="fas fa-folder text-yellow-500 mr-4"></i>
+                        <span class="flex-1 font-medium">Procedimentos Técnicos</span>
+                        <span class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-500">docs/procedimentos/</span>
+                    </div>
+
+                    <div class="flex items-center p-4 bg-white rounded-xl border border-slate-200 hover:border-indigo-300 transition-colors cursor-pointer">
+                        <i class="fas fa-question-circle text-indigo-500 mr-4"></i>
+                        <span class="flex-1 font-medium">FAQ - Perguntas Comuns</span>
+                        <span class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-500">docs/faq/</span>
+                    </div>
+                </div>
+
+                <!-- Destaque / Tutorial -->
+                <div class="bg-indigo-50 rounded-2xl p-8 border border-indigo-100 relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h3 class="text-xl font-bold text-indigo-900 mb-4">Novo no Portal?</h3>
+                        <p class="text-indigo-700 mb-6 text-sm leading-relaxed">
+                            Aprenda a acompanhar seus chamados através do quadro Kanban de atendimento. Clique abaixo para ler o guia de utilização do Service Desk.
+                        </p>
+                        <a href="https://github.com/SEU_USUARIO/SEU_REPOSITORIO/blob/main/docs/faq/como-funciona.md" target="_blank" class="inline-flex items-center bg-indigo-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-indigo-700 transition-all shadow-md">
+                            Ver Guia <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                    <i class="fas fa-info-circle absolute -bottom-4 -right-4 text-8xl text-indigo-100"></i>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 py-10 bg-white">
+        <div class="container mx-auto px-6 text-center text-slate-400 text-sm">
+            <p>&copy; 2024 Service Desk TI - Gestão via GitHub Issues</p>
+            <div class="mt-4 flex justify-center gap-6">
+                <a href="https://github.com/SEU_USUARIO/SEU_REPOSITORIO" class="hover:text-indigo-600 transition-colors"><i class="fab fa-github"></i> Repositório</a>
+                <a href="https://github.com/SEU_USUARIO/SEU_REPOSITORIO/projects" class="hover:text-indigo-600 transition-colors"><i class="fas fa-columns"></i> Kanban</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
