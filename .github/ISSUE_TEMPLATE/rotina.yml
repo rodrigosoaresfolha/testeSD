@@ -1,0 +1,97 @@
+name: 📅 Rotina Técnica
+description: Tarefas recorrentes, backups e manutenções preventivas
+title: "[ROTINA] "
+labels: ["rotina", "manutenção"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Registre tarefas rotineiras e manutenções preventivas para acompanhamento contínuo.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Descrição da Tarefa
+      description: Descreva a atividade rotineira
+      placeholder: "Ex: Backup semanal do banco de dados principal"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: Frequência
+      options:
+        - "Diária"
+        - "Semanal"
+        - "Quinzenal"
+        - "Mensal"
+        - "Trimestral"
+        - "Semestral"
+        - "Anual"
+    validations:
+      required: true
+
+  - type: input
+    id: next_execution
+    attributes:
+      label: Próxima Execução
+      description: Quando essa tarefa será executada?
+      placeholder: "Ex: 2026-05-05 (segunda-feira)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: procedures
+    attributes:
+      label: Procedimentos Detalhados
+      description: Passo a passo da execução
+      placeholder: |
+        1. Fazer login no servidor
+        2. Executar script de backup
+        3. Verificar integridade
+        4. Armazenar em local seguro
+    validations:
+      required: true
+
+  - type: input
+    id: responsible
+    attributes:
+      label: Responsável Principal
+      description: Quem executa essa tarefa?
+      placeholder: "Ex: João Silva (joao.silva@empresa.com)"
+    validations:
+      required: true
+
+  - type: input
+    id: backup_contact
+    attributes:
+      label: Contato de Backup
+      description: Quem faz se o responsável não estiver disponível?
+      placeholder: "Ex: Maria Santos (maria.santos@empresa.com)"
+
+  - type: textarea
+    id: checklist
+    attributes:
+      label: Checklist de Execução
+      description: Itens a verificar durante a execução
+      placeholder: |
+        - [ ] Preparar ambiente
+        - [ ] Executar procedimento
+        - [ ] Validar resultado
+        - [ ] Registrar em log
+        - [ ] Notificar stakeholders
+
+  - type: textarea
+    id: contingency
+    attributes:
+      label: Plano de Contingência
+      description: O que fazer se algo der errado?
+      placeholder: "Ex: Se o backup falhar, tentar novamente em 30 min e escalar para o gerente"
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Observações Adicionais
+      description: Documentação, links úteis, etc.
+      placeholder: "Informações adicionais..."
