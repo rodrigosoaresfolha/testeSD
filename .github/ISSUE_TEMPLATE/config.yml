@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📚 Documentação
+    url: https://github.com/rodrigosoaresfolha/testeSD/blob/main/docs
+    about: Acesse nossa base de conhecimento completa
+  - name: 📊 Quadro Kanban
+    url: https://github.com/rodrigosoaresfolha/testeSD/projects
+    about: Acompanhe o status dos chamados em tempo real
+  - name: ❓ FAQ - Perguntas Frequentes
+    url: https://github.com/rodrigosoaresfolha/testeSD/blob/main/docs/faq
+    about: Respostas para dúvidas comuns
