@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📋 To-Do List - Gerenciador de Tarefas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            transition: all 0.3s ease;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .main-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 900px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            color: white;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            font-weight: 800;
+            margin: 0 0 10px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        /* Input Section */
+        .input-section {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        #taskInput {
+            flex: 1;
+            padding: 15px 20px;
+            border: 2px solid #e0e7ff;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        #taskInput:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        #addBtn {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1em;
+        }
+
+        #addBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Stats */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            font-size: 0.9em;
+            color: #666;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-card .number {
+            font-size: 2.5em;
+            font-weight: 800;
+            color: #667eea;
+            margin: 0;
+        }
+
+        /* Filters */
+        .filters-section {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background: #f5f7fa;
+            border: 2px solid transparent;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: #666;
+        }
+
+        .filter-btn:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #667eea;
+        }
+
+        /* Tasks List */
+        .tasks-container {
+            margin-bottom: 30px;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 20px;
+            background: #f9fafb;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .task-item:hover {
+            background: #f5f7fa;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .task-item.completed {
+            opacity: 0.6;
+        }
+
+        .task-item.completed .task-text {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        .checkbox-wrapper {
+            margin-top: 5px;
+        }
+
+        .checkbox-wrapper input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+
+        .task-text {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .task-priority {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-right: 10px;
+            background: #fff;
+            border: 1px solid #e0e7ff;
+        }
+
+        .priority-high {
+            background: #fee;
+            border-color: #fcc;
+            color: #c33;
+        }
+
+        .priority-medium {
+            background: #fef3c7;
+            border-color: #fcd34d;
+            color: #b45309;
+        }
+
+        .priority-low {
+            background: #d1fae5;
+            border-color: #6ee7b7;
+            color: #065f46;
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .task-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .edit-btn {
+            background: #e0e7ff;
+            color: #667eea;
+        }
+
+        .edit-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .delete-btn {
+            background: #fee;
+            color: #dc2626;
+        }
+
+        .delete-btn:hover {
+            background: #dc2626;
+            color: white;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state i {
+            font-size: 4em;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        .empty-state p {
+            font-size: 1.1em;
+            margin: 0;
+        }
+
+        /* Action Buttons */
+        .actions-section {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 12px 20px;
+            border: 2px solid #e0e7ff;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            color: #667eea;
+        }
+
+        .action-btn:hover {
+            background: #f5f7fa;
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .action-btn.danger {
+            color: #dc2626;
+            border-color: #fecaca;
+        }
+
+        .action-btn.danger:hover {
+            background: #fee;
+            border-color: #dc2626;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            font-size: 1.5em;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e7ff;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-btn.save {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .modal-btn.save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .modal-btn.cancel {
+            background: #f5f7fa;
+            color: #666;
+        }
+
+        .modal-btn.cancel:hover {
+            background: #e0e7ff;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f5f7fa;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #764ba2;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .task-actions {
+                flex-direction: column;
+            }
+
+            .task-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-wrapper">
+        <div class="main-container">
+            <!-- Header -->
+            <div class="header">
+                <h1>📋 Minhas Tarefas</h1>
+                <p>Gerenciador inteligente de tarefas com persistência de dados</p>
+            </div>
+
+            <!-- Content -->
+            <div class="content">
+                <!-- Input Section -->
+                <div class="input-section">
+                    <input 
+                        type="text" 
+                        id="taskInput" 
+                        placeholder="Adicione uma nova tarefa... (pressione Enter)"
+                        autocomplete="off"
+                    >
+                    <button id="addBtn">
+                        <i class="fas fa-plus"></i> Adicionar
+                    </button>
+                </div>
+
+                <!-- Stats -->
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <h3>Total</h3>
+                        <p class="number" id="totalTasks">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Ativas</h3>
+                        <p class="number" id="activeTasks">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Concluídas</h3>
+                        <p class="number" id="completedTasks">0</p>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="filters-section">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-list"></i> Todas
+                    </button>
+                    <button class="filter-btn" data-filter="active">
+                        <i class="fas fa-circle-notch"></i> Ativas
+                    </button>
+                    <button class="filter-btn" data-filter="completed">
+                        <i class="fas fa-check-circle"></i> Concluídas
+                    </button>
+                    <button class="filter-btn" data-filter="high">
+                        <i class="fas fa-fire"></i> Alta Prioridade
+                    </button>
+                </div>
+
+                <!-- Tasks List -->
+                <div class="tasks-container" id="tasksList">
+                    <div class="empty-state">
+                        <i class="fas fa-inbox"></i>
+                        <p>Nenhuma tarefa encontrada. Adicione uma para começar!</p>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="actions-section">
+                    <button class="action-btn" id="clearCompletedBtn">
+                        <i class="fas fa-check-double"></i> Limpar Concluídas
+                    </button>
+                    <button class="action-btn" id="exportBtn">
+                        <i class="fas fa-download"></i> Exportar
+                    </button>
+                    <button class="action-btn danger" id="clearAllBtn">
+                        <i class="fas fa-trash-alt"></i> Limpar Todas
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-edit"></i> Editar Tarefa
+            </div>
+            <form id="editForm">
+                <div class="form-group">
+                    <label for="editTaskInput">Descrição</label>
+                    <input type="text" id="editTaskInput" required>
+                </div>
+                <div class="form-group">
+                    <label for="editPriorityInput">Prioridade</label>
+                    <select id="editPriorityInput">
+                        <option value="low">🟢 Baixa</option>
+                        <option value="medium">🟡 Média</option>
+                        <option value="high">🔴 Alta</option>
+                    </select>
+                </div>
+                <div class="modal-buttons">
+                    <button type="submit" class="modal-btn save">
+                        <i class="fas fa-save"></i> Salvar
+                    </button>
+                    <button type="button" class="modal-btn cancel" id="cancelEditBtn">
+                        <i class="fas fa-times"></i> Cancelar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
