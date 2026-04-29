@@ -1,0 +1,77 @@
+name: 🚀 Melhoria / Sugestão
+description: Sugerir novas funcionalidades ou otimizações em processos de TI
+title: "[MELHORIA] "
+labels: ["melhoria", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Compartilhe suas ideias para melhorar nossos sistemas e processos!
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problema ou Necessidade
+      description: Qual problema essa melhoria resolve?
+      placeholder: "Ex: Atualmente, relatorios levam 2 horas para serem gerados manualmente"
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solução Proposta
+      description: Como você sugere resolver isso?
+      placeholder: "Ex: Criar um script automatizado que gera os relatórios diariamente às 6h"
+    validations:
+      required: true
+
+  - type: textarea
+    id: benefits
+    attributes:
+      label: Benefícios Esperados
+      description: Quais serão os ganhos?
+      placeholder: |
+        - Redução de 2 horas de trabalho manual
+        - Relatórios sempre atualizados
+        - Menos erros humanos
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Prioridade
+      options:
+        - "🔴 Crítica"
+        - "🟠 Alta"
+        - "🟡 Normal"
+        - "🟢 Baixa"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: effort
+    attributes:
+      label: Esforço Estimado
+      options:
+        - "⚡ Pequeno (1-2 dias)"
+        - "📋 Médio (1-2 semanas)"
+        - "🏗️ Grande (1-2 meses)"
+        - "❓ Desconhecido"
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impacto
+      description: Quem será afetado? Quantas pessoas?
+      placeholder: "Ex: 50 usuários do departamento financeiro"
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Informações Adicionais
+      description: Links, referências, mockups, etc.
+      placeholder: "Informações adicionais..."
