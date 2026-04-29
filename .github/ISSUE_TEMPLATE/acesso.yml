@@ -1,0 +1,101 @@
+name: 🔐 Acessos e Permissões
+description: Solicitar criação de contas, reset de senhas ou novas permissões
+title: "[ACESSO] "
+labels: ["acesso", "segurança"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Preencha o formulário abaixo para solicitar acesso, permissões ou reset de credenciais.
+
+  - type: dropdown
+    id: request_type
+    attributes:
+      label: Tipo de Solicitação
+      options:
+        - "Criar nova conta de usuário"
+        - "Reset de senha"
+        - "Adicionar novas permissões"
+        - "Remover acesso"
+        - "Alteração de grupo/departamento"
+        - "Outro"
+    validations:
+      required: true
+
+  - type: input
+    id: user_name
+    attributes:
+      label: Nome do Usuário
+      description: Nome completo da pessoa
+      placeholder: "Ex: João da Silva"
+    validations:
+      required: true
+
+  - type: input
+    id: user_email
+    attributes:
+      label: Email do Usuário
+      description: Email corporativo
+      placeholder: "Ex: joao.silva@empresa.com"
+    validations:
+      required: true
+
+  - type: input
+    id: department
+    attributes:
+      label: Departamento
+      description: Departamento/área do usuário
+      placeholder: "Ex: Financeiro, RH, TI"
+    validations:
+      required: true
+
+  - type: textarea
+    id: systems
+    attributes:
+      label: Sistemas/Ferramentas Necessários
+      description: Liste os sistemas que o usuário precisa acessar
+      placeholder: |
+        - ERP
+        - Email
+        - VPN
+        - GitHub
+        - Slack
+    validations:
+      required: true
+
+  - type: input
+    id: manager
+    attributes:
+      label: Gerente/Responsável
+      description: Quem autoriza essa solicitação?
+      placeholder: "Ex: Maria Silva (maria.silva@empresa.com)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Urgência
+      options:
+        - "🔴 Crítica (Hoje)"
+        - "🟠 Alta (Até amanhã)"
+        - "🟡 Normal (Até 3 dias)"
+        - "🟢 Baixa (Próxima semana)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: justification
+    attributes:
+      label: Justificativa
+      description: Por que o acesso é necessário?
+      placeholder: "Ex: Novo colaborador iniciando na área de TI"
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Observações Adicionais
+      description: Qualquer informação relevante
+      placeholder: "Informações adicionais..."
