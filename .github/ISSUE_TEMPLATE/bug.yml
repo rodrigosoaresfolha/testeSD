@@ -1,0 +1,76 @@
+name: 🐛 Bug / Erro
+description: Reportar falhas técnicas ou comportamentos inesperados em sistemas
+title: "[BUG] "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por reportar um bug! Por favor, preencha os detalhes abaixo para nos ajudar a entender e corrigir o problema.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Descrição do Problema
+      description: Descreva o bug de forma clara e objetiva
+      placeholder: "Ex: A aplicação exibe erro 500 ao tentar fazer login"
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Passos para Reproduzir
+      description: Lista de passos para reproduzir o problema
+      placeholder: |
+        1. Acesse a página...
+        2. Clique em...
+        3. O erro aparece...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportamento Esperado
+      description: O que deveria acontecer?
+      placeholder: "A página deveria carregar sem erros"
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Comportamento Atual
+      description: O que realmente está acontecendo?
+      placeholder: "A página exibe erro 500"
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Ambiente
+      description: Sistema operacional, navegador, versão, etc.
+      placeholder: "Windows 10, Chrome 120, etc."
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Se aplicável, adicione screenshots do erro
+      placeholder: "Você pode colar imagens aqui"
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs ou Mensagens de Erro
+      description: Copie e cole logs relevantes se disponível
+      placeholder: "Cole os logs ou erros aqui"
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Informações Adicionais
+      description: Qualquer outra informação que possa ser útil
+      placeholder: "Informações adicionais..."
